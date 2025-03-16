@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/in', function (req,res, next) {
+  res.render('home');
+})
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server listening on http://0.0.0.0:${port}`);
