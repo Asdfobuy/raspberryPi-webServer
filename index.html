@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Viewer</title>
     <script>
+      // import loadImages from "./loadImages.js";
+
       async function loadImages() {
         const response = await fetch("/list-images");
         const images = await response.json();
@@ -24,6 +26,9 @@
 
       window.onload = loadImages;
     </script>
+    <style>
+
+    </style>
   </head>
   <body>
     <h1>Image Viewer</h1>

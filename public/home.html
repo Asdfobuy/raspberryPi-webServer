@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+</head>
+<body>
+    <h1>Main page</h1>
+    <button onclick="goToImages()">Images</button>
+</body>
+<style>
+    h1 {
+        /* text-align: center; */
+        color: tomato;
+    }
+    button {
+        background-color: lightblue;
+        border-radius: 1rem;
+    }
+</style>
+<script>
+    const goToImages = () => {
+        window.location.href = "/images";
+    };
+</script>
+</html>
