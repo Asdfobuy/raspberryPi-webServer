@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
+<head class="container">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>Main page</h1>
-    <button onclick="goToImages()">Images</button>
+<body class="container">
+    <background class="test1">
+    <h1 class="rowContainer">Main page</h1>
+</background>
+<p class="container">
+    <button class="container" onclick="goToImages()">Images</button>
+</p>
 </body>
-<style>
-    h1 {
-        /* text-align: center; */
-        color: tomato;
-    }
-    button {
-        background-color: lightblue;
-        border-radius: 1rem;
-    }
-</style>
 <script>
     const goToImages = () => {
         window.location.href = "/images";
