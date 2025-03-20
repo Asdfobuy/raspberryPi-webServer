@@ -5,6 +5,8 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
+
 // Serve static files from the "public" folder
 app.use(express.static('public'));
 
@@ -23,4 +25,5 @@ app.get('/list-images', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
-});
+})
+

@@ -21,10 +21,22 @@
 
         window.onload = loadImages;
     </script>
-    <script src="../app.js"></script>
+    <script>
+        var menu = document.querySelector(".dropdown");
+
+    function dropDown() {
+    document.querySelector(".dropdown-content").style.display = "block";}
+
+    </script>
 </head>
 <body>
-    <h1>Image Gallery</h1>
-    <div id="gallery"></div>
+    <h1>Image Gallery
+        <div class="dropdown">
+            <button onclick="dropDown">menu</button>
+        </div>
+        <div id="gallery"></div>
+    </h1>
+
 </body>
+
 </html>
