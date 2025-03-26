@@ -23,6 +23,29 @@ app.get('/list-images', (req, res) => {
   });
 });
 
+// 🔹 API for downloading an image
+app.get('/download-image/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'public/images', req.params.filename);
+  
+  if (fs.existsSync(filePath)) {
+    res.download(filePath);
+  } else {
+    res.status(404).json({ error: 'File not found' });
+  }
+});
+
+// 🔹 API for deleting an image
+app.delete('/delete-image/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'public/images', req.params.filename);
+  
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error deleting file' });
+    }
+    res.json({ success: true, message: 'File deleted successfully' });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 })

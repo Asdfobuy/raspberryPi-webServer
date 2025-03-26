@@ -5,45 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        async function loadImages() {
-            const response = await fetch('/list-images');
-            const images = await response.json();
-            const container = document.getElementById('gallery');
-
-            images.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = "Gallery Image";
-                container.appendChild(img);
-            });
-        }
-
-        window.onload = loadImages;
-    </script>
-    <script>
-
-
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-    </script>
+    <script defer src="js/loadImages.js"></script>
+    <script defer src="js/dropdownMenu.js"></script>
 </head>
 <body>
     <h1 class="container-center">Image Gallery
@@ -58,6 +21,17 @@ window.onclick = function(event) {
         </button>
     </div>
     <div id="gallery"></div>
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Selected Image">
+            <div class="modal-buttons">
+                <button id="downloadBtn">Download</button>
+                <button id="deleteBtn">Delete</button>
+                <button id="selectBtn">Select</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
