@@ -3,9 +3,11 @@
         color: rgb(234, 217, 214);
         background-color: rgb(166, 166, 166);
         flex-basis: 90%;
+        height: 50px;
     }
     body {
         background-color: rgb(225, 225, 225);
+        overflow-y: scroll;
     }
 
     button {
@@ -78,7 +80,9 @@
       
       .dropdown {
         float: right;
-        position: relative;
+        position: fixed;
+        top: 20px;
+        right: 20px;
         display: inline-block;
       }
       
