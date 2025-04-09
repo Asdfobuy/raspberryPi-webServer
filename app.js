@@ -50,3 +50,33 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 })
 
+const { exec } = require('child_process');
+
+app.use(express.json());
+
+app.post('/set-config', (req, res) => {
+  const { shutter, iso, aperture } = req.body;
+
+  const cmds = [];
+
+  if (shutter) {
+    cmds.push(`gphoto2 --set-config /main/capturesettings/shutterspeed=${shutter}`);
+  }
+
+  if (iso) {
+    cmds.push(`gphoto2 --set-config /main/imgsettings/iso=${iso}`);
+  }
+
+  if (aperture) {
+    cmds.push(`gphoto2 --set-config /main/capturesettings/aperture=${aperture}`);
+  }
+
+  // Sorban végrehajtjuk őket
+  exec(cmds.join(' && '), (error, stdout, stderr) => {
+    if (error) {
+      console.error('Error:', stderr);
+      return res.status(500).json({ message: 'Hiba történt: ' + stderr });
+    }
+    res.json({ message: 'Beállítások sikeresen alkalmazva!' });
+  });
+});
