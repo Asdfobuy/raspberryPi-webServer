@@ -72,6 +72,8 @@
         font-size: 16px;
         border: none;
         cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
       }
       
       .dropbtn:hover, .dropbtn:focus {
@@ -179,4 +181,15 @@
 .selected {
     border: 3px solid blue;
     opacity: 0.8;
+}
+
+.gridcontainer {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 5px 5px; 
+    width: 100vw;
+    height: 85vh;
+    justify-content: center;
+
 }
