@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Camera Settings</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/dropdownMenu.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Jelenlegi beállítások</h2>
+    <ul id="currentSettings">
+      <li>Záridő: <span id="currentShutter">betöltés...</span></li>
+      <li>ISO: <span id="currentISO">betöltés...</span></li>
+      <li>Rekesz: <span id="currentAperture">betöltés...</span></li>
+      <li>Fókusz mód: <span id="currentFocusMode">betöltés...</span></li>
+    </ul>
+  </div>
+  <h1>Camera Settings</h1>
+  <form id="settingsForm">
+    <label for="shutter">Záridő (pl. 1/100):</label>
+    <input type="text" id="shutter" name="shutter"><br><br>
+
+    <label for="iso">ISO (pl. 100, 200, 400):</label>
+    <input type="number" id="iso" name="iso"><br><br>
+
+    <label for="aperture">Rekesz (pl. 5.6):</label>
+    <input type="text" id="aperture" name="aperture"><br><br>
+
+    <label for="focus">Fókusz mód:</label>
+    <select id="focus" name="focus">
+      <option value="auto">Autofókusz</option>
+      <option value="manual">Manuálfókusz</option>
+    </select><br><br>
+
+    <button type="submit">Alkalmaz</button>
+  </form>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction()">menu
+        <div id="myDropdown" class="dropdown-content">
+            <a href="/home.html">Home</a>
+            <a href="/index.html">Image Gallery</a>
+            <a href="/settings.html">Settings</a>
+            <a href="/about.html">About</a>
+          </div>
+    </button>
+</div>
+
+  <p id="responseMsg"></p>
+
+  <script>
+    document.getElementById('settingsForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const data = {
+        shutter: document.getElementById('shutter').value,
+        iso: document.getElementById('iso').value,
+        aperture: document.getElementById('aperture').value,
+        focus: document.getElementById('focus').value
+      };
+
+      const response = await fetch('/set-config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      document.getElementById('responseMsg').textContent = result.message;
+      loadCurrentSettings(); // Frissítsük a megjelenített értékeket
+    });
+
+    async function loadCurrentSettings() {
+      const res = await fetch('/get-config');
+      const config = await res.json();
+
+      document.getElementById('currentShutter').textContent = config.shutter || 'ismeretlen';
+      document.getElementById('currentISO').textContent = config.iso || 'ismeretlen';
+      document.getElementById('currentAperture').textContent = config.aperture || 'ismeretlen';
+      document.getElementById('currentFocusMode').textContent = config.focus || 'ismeretlen';
+    }
+
+    loadCurrentSettings();
+
+  </script>
+</body>
+</html>

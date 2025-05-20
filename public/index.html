@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/loadImages.js"></script>
+    <script defer src="js/dropdownMenu.js"></script>
+</head>
+<body>
+    <h1 class="container-center">Image Gallery
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">menu
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/home.html">Home</a>
+                    <a href="/index.html">Image Gallery</a>
+                    <a href="/settings.html">Settings</a>
+                    <a href="/about.html">About</a>
+                  </div>
+            </button>
+        </div>
+    </h1>
+    <div id="gallery"></div>
+    
+
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Selected Image">
+            <div class="modal-buttons">
+                <button id="downloadBtn">Download</button>
+                <button id="deleteBtn">Delete</button>
+                <button id="selectBtn">Select</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
